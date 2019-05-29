@@ -1,3 +1,4 @@
+setwd("/home/martinwg/OCP")
 
 generate_data <- function(obsin, obsout, p, s, dist, seed) 
 {
@@ -190,8 +191,8 @@ hBinarySearch <- function(l_pred_bound, u_pred_bound, pred_h, obs, p, dist = "No
 
 avg_FP_calc <- function(obs, p, s, dist, h1)
 {
-  FP <- rep(0, 5)
-  for (i in 1:5)
+  FP <- rep(0, 500)
+  for (i in 1:500)
   {
     dataset = generate_data(obs, 0, p, s, dist, i)
     rmdp_res = RMDP(dataset$data)
