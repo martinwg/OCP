@@ -1,5 +1,6 @@
 setwd("/home/martinwg/OCP")
-
+a = 12
+write.csv(a, "a.csv")
 generate_data <- function(obsin, obsout, p, s, dist, seed) 
 {
   set.seed(seed)
@@ -78,7 +79,8 @@ generate_data <- function(obsin, obsout, p, s, dist, seed)
   return(data)
 }
 
-
+#b = head(data)
+#write.csv(b, "b.csv")
 
 RMDP<-function(y,alpha=0.05,itertime=100)   ############RMDP procedure
 {
@@ -156,7 +158,7 @@ RMDP<-function(y,alpha=0.05,itertime=100)   ############RMDP procedure
 
 
 ## Binary Search Function
-hBinarySearch <- function(l_pred_bound, u_pred_bound, pred_h, obs, p, dist = "Normal", s = 0.5, desired_FAP = 0.05, tol = 1e-05, niter = 1000, sim = 5)
+hBinarySearch <- function(l_pred_bound, u_pred_bound, pred_h, obs, p, dist = "Normal", s = 0.5, desired_FAP = 0.05, tol = 1e-04, niter = 100, sim = 500)
 {
   l <- l_pred_bound
   u <- u_pred_bound
@@ -164,6 +166,8 @@ hBinarySearch <- function(l_pred_bound, u_pred_bound, pred_h, obs, p, dist = "No
   #m <- (l_pred_bound + u_pred_bound)/2
   D <- avg_FP_calc (obs, p, s, dist, m) 
   #D <- BinaryEntrp (xold, m) ## This is just the function we want to get to approximate root
+  if (abs((D - desired_FAP)) < tol)
+	return(list(h_value = m, FP_value = D))
   for (i in 1:niter)
   {
     if (D < desired_FAP)
@@ -178,10 +182,10 @@ hBinarySearch <- function(l_pred_bound, u_pred_bound, pred_h, obs, p, dist = "No
       l = m
       u = u
       m = (u+l)/2
-    }
-    
+    } 
     D <- avg_FP_calc (obs, p, s, dist, m)   ## This is just the function we want to get to approximate root
-    if (abs((D-desired_FAP)) < tol)
+    #write.csv(D, "D.csv")
+	if (abs((D-desired_FAP)) < tol)
       return(list(h_value = m, FP_value = D)) 
   }
   #print (abs(D-desired_FAP))
@@ -212,8 +216,11 @@ lower = 0
 upper = 10
 est = 5
 
+c = obs
+#write.csv(c, "c.csv")
+
 ## Example 
 result <- hBinarySearch(lower, upper, est, obs, p,  dist, s = corr)
 result$h_value
 result$FP_value
-write.csv(result, "result.csv")
+write.csv(result, "/home/martinwg/OCP/result.csv")
