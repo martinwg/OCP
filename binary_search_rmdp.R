@@ -216,3 +216,4 @@ est = 5
 result <- hBinarySearch(lower, upper, est, obs, p,  dist, s = corr)
 result$h_value
 result$FP_value
+write.csv(result, "result.csv")
