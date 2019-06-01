@@ -14,12 +14,12 @@ generate_data <- function(obsin, obsout, p, s, dist, sim, h1)
       mu0 = (rep(0, p))
       p1 = sample(1:p, 1) ### Shifting Random Dimensions
       sigma <-matrix(s, p, p) + diag((1-s), p)
-      mu1a = qmvnorm(1-deltap, sigma  = sigma)$quantile
-      mu1a = rep(mu1a, p) 
-      rsigns = sample(c(-1,1),p, replace = T)
-      mu1b = sqrt(mu1a%*%mu1a/p1)
-      mu1 = c(rep(mu1b, p1), rep(0,(p-p1))) ### Shifting Random Dimensions
-      mu1 = mu1 * rsigns
+      #mu1a = qmvnorm(1-deltap, sigma  = sigma)$quantile
+      #mu1a = rep(mu1a, p) 
+      #rsigns = sample(c(-1,1),p, replace = T)
+      #mu1b = sqrt(mu1a%*%mu1a/p1)
+      #mu1 = c(rep(mu1b, p1), rep(0,(p-p1))) ### Shifting Random Dimensions
+      #mu1 = mu1 * rsigns
       din = rmvnorm(obsin, mean=mu0, sigma = sigma)
       if (obsout > 0){
         dout = rmvnorm(obsout, mean=mu1, sigma = sigma)
@@ -38,12 +38,12 @@ generate_data <- function(obsin, obsout, p, s, dist, sim, h1)
       mu0 = (rep(0, p))
       p1 = sample(1:p, 1) ### Shifting Random Dimensions
       sigma <-matrix(s, p, p) + diag((1-s), p)
-      mu1a = qmvnorm(1-deltap, sigma  = sigma)$quantile
-      mu1a = rep(mu1a, p) 
-      rsigns = sample(c(-1,1),p, replace = T)
-      mu1b = sqrt(mu1a%*%mu1a/p1)
-      mu1 = c(rep(mu1b, p1), rep(0,(p-p1))) ### Shifting Random Dimensions
-      mu1 = mu1 * rsigns
+      #mu1a = qmvnorm(1-deltap, sigma  = sigma)$quantile
+      #mu1a = rep(mu1a, p) 
+      #rsigns = sample(c(-1,1),p, replace = T)
+      #mu1b = sqrt(mu1a%*%mu1a/p1)
+      #mu1 = c(rep(mu1b, p1), rep(0,(p-p1))) ### Shifting Random Dimensions
+      #mu1 = mu1 * rsigns
       din = exp(rmvnorm(obsin, mean=mu0, sigma = sigma))
       if (obsout > 0){
         dout = exp(rmvnorm(obsout, mean=mu1, sigma = sigma))
@@ -62,12 +62,12 @@ generate_data <- function(obsin, obsout, p, s, dist, sim, h1)
       mu0 = (rep(0, p))
       p1 = sample(1:p, 1) ### Shifting Random Dimensions
       sigma <-matrix(s, p, p) + diag((1-s), p)
-      mu1a = qmvt(1-deltap, sigma  = sigma, df = 10)$quantile
-      mu1a = rep(mu1a, p) 
-      rsigns = sample(c(-1,1),p, replace = T)
-      mu1b = sqrt(mu1a%*%mu1a/p1)
-      mu1 = c(rep(mu1b, p1), rep(0,(p-p1))) ### Shifting Random Dimensions
-      mu1 = mu1 * rsigns
+      #mu1a = qmvt(1-deltap, sigma  = sigma, df = 10)$quantile
+      #mu1a = rep(mu1a, p) 
+      #rsigns = sample(c(-1,1),p, replace = T)
+      #mu1b = sqrt(mu1a%*%mu1a/p1)
+      #mu1 = c(rep(mu1b, p1), rep(0,(p-p1))) ### Shifting Random Dimensions
+      #mu1 = mu1 * rsigns
       din = rmvt(obsin, sigma = sigma, df = 10)
       if (obsout > 0){
         dout = rmvt(obsout, sigma = sigma, df = 10) + matrix(rep(mu1,obsout), ncol = p, byrow = T)
@@ -210,7 +210,7 @@ hBinarySearch <- function(l_pred_bound, u_pred_bound, pred_h, obs, p, dist = "No
 }
 
 ## Example
-dist = "T"
+dist = "Lognormal"
 obs = 100
 p = 100
 corr = 0.75
