@@ -5,7 +5,7 @@ generate_data <- function(obsin, obsout, p, s, dist, sim, h1)
 {
   #set.seed(seed)
   FP <- c()
-  registerDoParallel(cores=8)
+  registerDoParallel(cores=4)
   iter<-foreach (i=1:sim) %dopar%
   {
   if (dist=="Normal") {
@@ -210,10 +210,10 @@ hBinarySearch <- function(l_pred_bound, u_pred_bound, pred_h, obs, p, dist = "No
 }
 
 ## Example
-dist = "Normal"
-obs = 10
-p = 2
-corr = 0.5
+dist = "T"
+obs = 100
+p = 100
+corr = 0.75
 lower = 0
 upper = 25
 est = 5
@@ -226,7 +226,7 @@ end_time - start_time
 
 result$h_value
 result$FP_value
-write.csv(result, "/home/martinwg/OCP/result.csv")
+write.csv(result, "/home/martinwg/OCP/RMDP_N100_p100_s075_result.csv")
 
 
 
