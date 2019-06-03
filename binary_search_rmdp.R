@@ -178,7 +178,7 @@ hBinarySearch <- function(l_pred_bound, u_pred_bound, pred_h, obs, p, dist = "No
   m <- pred_h
   #m <- (l_pred_bound + u_pred_bound)/2
   #D <- avg_FP_calc (obs, p, s, dist, m) 
-  D = generate_data(obs,0,p,s, "Normal", 500, m)
+  D = generate_data(obs,0,p,s, dist, 500, m)
   #D <- mean(FP)
   
   #D <- BinaryEntrp (xold, m) ## This is just the function we want to get to approximate root
@@ -199,7 +199,7 @@ hBinarySearch <- function(l_pred_bound, u_pred_bound, pred_h, obs, p, dist = "No
       u = u
       m = (u+l)/2
     } 
-    D = generate_data(obs,0,p,s, "Normal", 500, m)
+    D = generate_data(obs,0,p,s, dist, 500, m)
     #D <- avg_FP_calc (obs, p, s, dist, m)   ## This is just the function we want to get to approximate root
     #write.csv(D, "D.csv")
 	if (abs((D-desired_FAP)) < tol)
@@ -211,12 +211,12 @@ hBinarySearch <- function(l_pred_bound, u_pred_bound, pred_h, obs, p, dist = "No
 
 ## Example
 dist = "Lognormal"
-obs = 100
+obs = 50
 p = 100
-corr = 0.75
-lower = 0
-upper = 25
-est = 5
+corr = 0.25
+lower = 2
+upper = 8
+est = 4.89
 
 ## Example 
 start_time <- Sys.time()
@@ -226,7 +226,7 @@ end_time - start_time
 
 result$h_value
 result$FP_value
-write.csv(result, "/home/martinwg/OCP/RMDP_N100_p100_s075_result.csv")
+write.csv(result, "/home/martinwg/OCP/RMDP_N50_p100_s025_result.csv")
 
 
 
