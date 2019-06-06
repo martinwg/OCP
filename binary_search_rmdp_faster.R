@@ -1,4 +1,4 @@
-setwd("M:\\Research\\OCP Sims")
+setwd("/home/martinwg/OCP")
 library(doParallel)
 #install.packages("mvnfast")
 library(mvnfast)
@@ -10,7 +10,7 @@ generate_data <- function(obsin, obsout, p, s, dist, sim, h1)
 {
   #set.seed(seed)
   FP <- c()
-  cl=makeCluster(40)
+  cl=makeCluster(4)
   registerDoParallel(cl)
   iter<-foreach (i=1:sim) %dopar%
   {
@@ -244,12 +244,12 @@ hBinarySearch <- function(l_pred_bound, u_pred_bound, pred_h, obs, p, dist, s, d
 }
 
 ## Example
-dist = "T"
-obs = 500
-p = 1500
+dist = "Normal"
+obs = 354
+p = 1917
 corr = 0.75
 lower = 1
-upper = 3
+upper = 9
 est = 1.567
 
 
@@ -262,7 +262,7 @@ end_time - start_time
 
 result$h_value
 result$FP_value
-#write.csv(result, "/home/martinwg/OCP/RMDP_N50_p100_s025_result.csv")
+write.csv(result, "/home/martinwg/OCP/RMDP_NOR_N354_p1917_s075_result.csv")
 
 
 
