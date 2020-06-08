@@ -28,7 +28,7 @@ OCP = function(dataframe, peeled_to_obs = 2, h = NULL, standardize = TRUE, plot 
   df_oc = data.frame(type=1,dataframe)
   N = dim(df_oc)[1]
   m = dim(df_oc)[1]
-  p = dim(df_oc)[2]
+  p = dim(df_oc)[2]-1
   invsigma = 1/p
   d = 0
   o1 = 0
